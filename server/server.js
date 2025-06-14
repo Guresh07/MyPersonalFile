@@ -7,7 +7,7 @@ const authRoutes = require("./routes/auth");
 const app = express();
 
 app.use(cors({
-  origin: 'https://my-personal-file-swart.vercel.app/api',
+  origin: 'https://my-personal-file-swart.vercel.app',
   credentials: true
 }));
 app.use(express.json());
