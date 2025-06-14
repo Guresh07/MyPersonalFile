@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // replace later with your deployed URL
+  baseURL: process.env.REACT_APP_API_BASE_URL,
+  withCredentials: true  // if you're sending cookies/token etc.
 });
 
 // Automatically attach token if present
