@@ -9,10 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/dataStorageApp", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(mongodb+srv://Ruthul:Ruthul1234@cluster0.qpx6zig.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0)
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error: ", err));
 
 app.use("/api/auth", authRoutes);
 
