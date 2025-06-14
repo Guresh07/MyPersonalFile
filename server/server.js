@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://Ruthul:Ruthul1234@cluster0.qpx6zig.mongodb.net/?
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error: ", err));
 
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
@@ -24,6 +24,6 @@ app.listen(5000, () => {
 
 const fileRoutes = require("./routes/files");
 
-app.use("/api/files", fileRoutes);
+app.use("/files", fileRoutes);
 app.use("/uploads", express.static("uploads"));
 
