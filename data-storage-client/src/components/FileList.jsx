@@ -10,7 +10,7 @@ function FileList() {
     try {
       const token = localStorage.getItem("token");
       // console.log("Token being sent:", token);
-      const res = await axios.get("http://localhost:5000/api/files/list", {
+      const res = await axios.get("https://mypersonalfile.onrender.com/files/list", {
         headers: { Authorization: `Bearer ${token}` },
       });
       // console.log("Files fetched:", res.data.files);
@@ -25,7 +25,7 @@ function FileList() {
   const handleDelete = async (fileId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/files/delete/${fileId}`, {
+      await axios.delete(`https://mypersonalfile.onrender.com/files/delete/${fileId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchFiles(); // Refresh list
@@ -37,7 +37,7 @@ function FileList() {
 const handleDownload = async (fileId, originalName) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(`http://localhost:5000/api/files/download/${fileId}`, {
+    const response = await axios.get(`https://mypersonalfile.onrender.com/files/download/${fileId}`, {
       headers: { Authorization: `Bearer ${token}` },
       responseType: "blob", // Important: fetch file as blob
     });
