@@ -29,7 +29,7 @@ function UploadFile() {
         return;
       }
 
-      await axios.post("http://localhost:5000/api/files/upload", formData, {
+      await axios.post("https://mypersonalfile.onrender.com/files/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
