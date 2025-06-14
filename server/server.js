@@ -6,8 +6,10 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-app.use(cors(  origin: 'my-personal-file-swart.vercel.app',
-  credentials: true));
+app.use(cors({
+  origin: 'my-personal-file-swart.vercel.app',
+  credentials: true
+}));
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://Ruthul:Ruthul1234@cluster0.qpx6zig.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
