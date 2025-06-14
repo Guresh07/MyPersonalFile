@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: https://mypersonalfile.onrender.com,
+  baseURL: "https://mypersonalfile.onrender.com",
   withCredentials: true  // if you're sending cookies/token etc.
 });
 
