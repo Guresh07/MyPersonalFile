@@ -18,7 +18,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "data-storage-app",
-    resource_type: "raw",
+    resource_type: "auto" || "raw", // Automatically detect resource type
   },
 });
 const upload = multer({ storage });
@@ -38,12 +38,15 @@ function extractPublicIdFromUrl(url) {
 router.post("/upload", verifyToken, upload.single("file"), async (req, res) => {
   if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
+    const resourceType = req.file.resource_type || "raw";  // cloudinary/multer-storage-cloudinary can provide this
+  
   try {
     const newFile = new File({
       originalName: req.file.originalname || req.file.filename,
       serverFilename: req.file.path, // Cloudinary URL
       fileUrl: req.file.path,
       publicId: req.file.filename || req.file.public_id || extractPublicIdFromUrl(req.file.path),
+      resourceType: resourceType,
       uploader: req.user.id,
     });
 
@@ -80,7 +83,7 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
     if (!file) return res.status(404).json({ message: "File not found" });
 
     // Delete from Cloudinary using publicId
-    const destroyResult = await cloudinary.uploader.destroy(file.publicId, { resource_type: "raw" });
+    const destroyResult = await cloudinary.uploader.destroy(file.publicId, { resource_type: file.resource_type });
   console.log("Cloudinary delete result:", destroyResult);
   await file.deleteOne();
 
